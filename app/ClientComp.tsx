@@ -1,10 +1,15 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { ServerComp2 } from "./ServerComp2";
 
 export const ClientComp = () => {
-  const [value, setValue] = useState("demo");
+  const [value, setValue] = useState<string | undefined>(undefined);
+
+  // Use effect hook to fix Error: Server Functions cannot be called during initial render...
+  useEffect(() => {
+    setValue("demo");
+  }, []);
 
   return (
     <div>
@@ -13,9 +18,11 @@ export const ClientComp = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <Suspense fallback={<div>Loading...</div>}>
-        <ServerComp2 value={value} />
-      </Suspense>
+      {value !== undefined && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <ServerComp2 value={value} />
+        </Suspense>
+      )}
     </div>
   );
 };
