@@ -1,8 +1,9 @@
 export const ServerComp = async () => {
   console.log("My server component");
-  // Do some slow magic
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  console.log("My server component timer done");
 
-  return <div>My server component</div>;
+  // Edit file message.txt in your IDE and you will see that change are not reflected
+  // This is because of the built-in cache system from next.js
+  const response = await fetch("http://localhost:3000/api/hello");
+
+  return <div>My server component: {await response.text()}</div>;
 };
