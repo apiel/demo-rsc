@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { ServerComp2 } from "./ServerComp2";
+// import { SharedComp } from "./SharedComp";
 
 export const ClientComp = () => {
   const [value, setValue] = useState<string | undefined>(undefined);
@@ -13,6 +14,7 @@ export const ClientComp = () => {
 
   return (
     <div>
+      {/* <SharedComp /> */}
       <input
         type="text"
         value={value}
