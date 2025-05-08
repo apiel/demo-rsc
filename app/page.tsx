@@ -1,8 +1,7 @@
-import Image from 'next/image'
-import { ServerComp } from './ServerComp'
 import { ClientComp } from './ClientComp'
-import { ServerComp2 } from './ServerComp2'
 import { MessageForm } from './MessageForm'
+import { ServerComp } from './ServerComp'
+import { ServerComp2 } from './ServerComp2'
 import { SharedComp } from './SharedComp'
 
 export default function Home() {
@@ -11,7 +10,7 @@ export default function Home() {
       <h1>Hello</h1>
       <ServerComp />
       <SharedComp />
-      <ClientComp />
+      <ClientComp svrComp={<ServerComp2 value="SSR" />} />
       <hr />
       <ServerComp2 value="yoyo" />
       <hr />
